@@ -1,4 +1,4 @@
-import { FaHome, FaChartBar, FaGraduationCap, FaUsers, FaTools, FaSearch, FaBell, FaUser } from 'react-icons/fa';
+import { FaHome, FaChartBar, FaGraduationCap, FaUsers, FaTools, FaBell, FaUser } from 'react-icons/fa';
 
 export default function Header() {
   return (
@@ -30,7 +30,7 @@ export default function Header() {
           </nav>
           
           <div className="user-actions">
-            <button className="search-btn" aria-label="Search"><FaSearch /></button>
+            
             <button className="notification-btn" aria-label="Notifications">
               <FaBell />
               <span className="notification-count">2</span>
