@@ -3031,3 +3031,11 @@ code, pre, kbd, .mono {
   gap: 20px;
   margin-top: 20px;
 }
+.chart-container {
+  height: 300px;
+  width: 100%;
+}
+.tradingview-widget-container {
+  height: 300px;
+  width: 100%;
+}

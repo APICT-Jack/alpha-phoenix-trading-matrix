@@ -8,14 +8,17 @@ import MarketTicker from './components/ui/MarketTicker';
 import FloatingAssistant from './components/ui/FloatingAssistant';
 import ThemeToggle from './components/ui/ThemeToggle';
 import Testimonials from './components/sections/Testimonials';
-import PerformanceMetrics from './components/sections/PerformanceMetrics';
 import Footer from './components/layout/Footer';
 import PremiumBanner from './components/layout/PremiumBanner';
+import { ThemeProvider } from './context/ThemeContext';
+import TradingCard from './components/ui/TradingCard';
 
 function App() {
   return (
     <div className="app">
+      
       <PremiumBanner />
+      <ThemeProvider>
       <Header />
       <main className="main-content">
         <Hero />
@@ -25,14 +28,18 @@ function App() {
         <Community />
         <MarketTicker />
         <div className="floating-buttons">
-        <ThemeToggle />
+       
+       <ThemeToggle />
+       
+        
         <FloatingAssistant />
       </div>
       <Testimonials />
-      <PerformanceMetrics />
+     
       
       </main>
       <Footer />
+      </ThemeProvider>
     </div>
   );
 }
