@@ -9,9 +9,13 @@ import FloatingAssistant from './components/ui/FloatingAssistant';
 import ThemeToggle from './components/ui/ThemeToggle';
 import Testimonials from './components/sections/Testimonials';
 import PerformanceMetrics from './components/sections/PerformanceMetrics';
+import Footer from './components/layout/Footer';
+import PremiumBanner from './components/layout/PremiumBanner';
+
 function App() {
   return (
     <div className="app">
+      <PremiumBanner />
       <Header />
       <main className="main-content">
         <Hero />
@@ -26,7 +30,9 @@ function App() {
       </div>
       <Testimonials />
       <PerformanceMetrics />
+      
       </main>
+      <Footer />
     </div>
   );
 }

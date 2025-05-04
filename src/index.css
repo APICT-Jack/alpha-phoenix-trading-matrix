@@ -2967,7 +2967,7 @@ code, pre, kbd, .mono {
 
 /* Tab Button Styles */
 .tab-btn {
-  /* Your existing tab button styles */
+ 
   transition: all 0.2s ease;
   cursor: pointer;
   border: none;
