@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { 
   FaChartLine, FaChess, FaPalette, FaCode, 
   FaDownload, FaStar, FaComment, FaInfoCircle,
-  FaSearch, FaSlidersH, FaChessKnight, FaChartPie, FaRobot
+  FaSearch, FaSlidersH, FaChessKnight, FaChartPie, FaRobot, FaTimes
 } from 'react-icons/fa';
+import DetailsCard from './DetailsCard';
+import '../../styles/DetailsCardStyle.css';
 
 // Complete library data structure
 const LIBRARY_DATA = {
@@ -107,6 +109,7 @@ const TABS = [
 export default function Library() {
   const [activeTab, setActiveTab] = useState('indicators');
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedResource, setSelectedResource] = useState(null);
 
   const filteredResources = LIBRARY_DATA[activeTab].filter(resource =>
     resource.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -192,7 +195,10 @@ export default function Library() {
                       <button className="resource-btn primary">
                         <FaDownload /> Download
                       </button>
-                      <button className="resource-btn secondary">
+                      <button 
+                        className="resource-btn secondary"
+                        onClick={() => setSelectedResource(resource)}
+                      >
                         <FaInfoCircle /> Details
                       </button>
                     </div>
@@ -203,6 +209,83 @@ export default function Library() {
           </div>
         </div>
       </div>
+
+      {/* Details Modal */}
+      {selectedResource && (
+        <div className="modal-overlay active">
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <div className="resource-icon-large">{selectedResource.icon}</div>
+              <div>
+                <h3>{selectedResource.title}</h3>
+                <div className="resource-meta">
+                  <span className="resource-category">{selectedResource.category}</span>
+                  <span className="resource-version">{selectedResource.version}</span>
+                </div>
+              </div>
+              <button 
+                className="close-btn" 
+                onClick={() => setSelectedResource(null)} 
+                aria-label="Close modal"
+              >
+                <FaTimes />
+              </button>
+            </div>
+
+            <div className="modal-body">
+              <div className="description-section">
+                <h4>Description</h4>
+                <p>{selectedResource.description}</p>
+              </div>
+
+              <div className="stats-section">
+                <h4>Statistics</h4>
+                <div className="stats-grid">
+                  <div className="stat-item">
+                    <FaDownload /> Downloads: {selectedResource.stats.downloads.toLocaleString()}
+                  </div>
+                  <div className="stat-item">
+                    <FaStar /> Rating: {selectedResource.stats.rating}
+                  </div>
+                  <div className="stat-item">
+                    <FaComment /> Comments: {selectedResource.stats.comments}
+                  </div>
+                </div>
+              </div>
+
+              <div className="features-section">
+                <h4>Key Features</h4>
+                <ul>
+                  <li>Advanced trend detection algorithms</li>
+                  <li>Customizable parameters for different trading styles</li>
+                  <li>Multi-timeframe compatibility</li>
+                  <li>Visual alerts and notifications</li>
+                </ul>
+              </div>
+
+              <div className="screenshots-section">
+                <h4>Screenshots</h4>
+                <div className="screenshots-grid">
+                  <div className="screenshot-placeholder">Screenshot 1</div>
+                  <div className="screenshot-placeholder">Screenshot 2</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="modal-footer">
+              <button className="download-btn primary">
+                <FaDownload /> Download Now
+              </button>
+              <button 
+                className="download-btn secondary" 
+                onClick={() => setSelectedResource(null)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
