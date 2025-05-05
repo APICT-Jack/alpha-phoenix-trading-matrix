@@ -12,7 +12,6 @@ import Footer from './components/layout/Footer';
 import PremiumBanner from './components/layout/PremiumBanner';
 import { ThemeProvider } from './context/ThemeContext';
 import TradingCard from './components/ui/TradingCard';
-
 function App() {
   return (
     <div className="app">
@@ -34,7 +33,7 @@ function App() {
         
         <FloatingAssistant />
       </div>
-      <Testimonials />
+     
      
       
       </main>

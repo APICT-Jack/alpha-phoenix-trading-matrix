@@ -3040,3 +3040,336 @@ code, pre, kbd, .mono {
   width: 100%;
 }
 /*cards*/
+/* Add this to your styles.css file */
+
+/* ================ NOTIFICATION PAGE ================ */
+.notifications-page {
+  padding: var(--space-xl) 0;
+  background: var(--color-bg);
+}
+
+.notifications-container {
+  background: var(--color-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.notifications-header {
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-bg-secondary);
+}
+
+.notifications-header h2 {
+  margin-bottom: 0;
+  font-size: 1.5rem;
+}
+
+.notifications-actions {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.mark-all-read {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: color var(--transition-speed-fast) var(--transition-easing);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xxs);
+}
+
+.mark-all-read:hover {
+  color: var(--color-primary);
+}
+
+.notifications-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-secondary);
+}
+
+.notification-tab {
+  flex: 1;
+  padding: var(--space-sm) var(--space-md);
+  text-align: center;
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  transition: all var(--transition-speed-fast) var(--transition-easing);
+}
+
+.notification-tab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--color-primary);
+  transition: width var(--transition-speed) var(--transition-easing);
+}
+
+.notification-tab:hover {
+  color: var(--color-text);
+}
+
+.notification-tab.active {
+  color: var(--color-primary);
+}
+
+.notification-tab.active::after {
+  width: 100%;
+}
+
+.notification-tab-badge {
+  position: absolute;
+  top: -5px;
+  right: 5px;
+  background: var(--color-danger);
+  color: var(--color-white);
+  font-size: 0.7rem;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notifications-content {
+  min-height: 400px;
+  padding: var(--space-md);
+}
+
+.notification-item {
+  display: flex;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-speed-fast) var(--transition-easing);
+  position: relative;
+}
+
+.notification-item.unread {
+  background: rgba(41, 121, 255, 0.05);
+}
+
+.notification-item:hover {
+  background: var(--color-bg-secondary);
+}
+
+.notification-item + .notification-item {
+  margin-top: var(--space-xs);
+}
+
+.notification-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: var(--color-bg-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.notification-icon.signal {
+  color: var(--color-success);
+  background: rgba(76, 175, 80, 0.1);
+}
+
+.notification-icon.chat {
+  color: var(--color-primary);
+  background: rgba(41, 121, 255, 0.1);
+}
+
+.notification-icon.community {
+  color: var(--color-accent);
+  background: rgba(255, 122, 0, 0.1);
+}
+
+.notification-icon.event {
+  color: var(--color-info);
+  background: rgba(33, 150, 243, 0.1);
+}
+
+.notification-icon.study {
+  color: #9c27b0;
+  background: rgba(156, 39, 176, 0.1);
+}
+
+.notification-icon.bank {
+  color: var(--color-warning);
+  background: rgba(255, 152, 0, 0.1);
+}
+
+.notification-content {
+  flex: 1;
+}
+
+.notification-title {
+  font-weight: 500;
+  margin-bottom: var(--space-xxs);
+  color: var(--color-text);
+}
+
+.notification-message {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-xs);
+}
+
+.notification-meta {
+  display: flex;
+  gap: var(--space-md);
+  font-size: 0.8rem;
+  color: var(--color-text-tertiary);
+}
+
+.notification-time {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xxs);
+}
+
+.notification-unread {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+}
+
+.notification-actions {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: var(--space-xs);
+}
+
+.notification-action {
+  padding: var(--space-xxs) var(--space-sm);
+  background: var(--color-bg-tertiary);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-speed-fast) var(--transition-easing);
+}
+
+.notification-action:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.empty-state {
+  text-align: center;
+  padding: var(--space-xl) 0;
+}
+
+.empty-icon {
+  font-size: 2.5rem;
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-md);
+}
+
+.empty-state h3 {
+  margin-bottom: var(--space-sm);
+  color: var(--color-text);
+}
+
+.empty-state p {
+  color: var(--color-text-secondary);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Tab Content Transitions */
+.notification-tab-content {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.notification-tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .notifications-tabs {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .notifications-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .notification-tab {
+    min-width: 100px;
+    padding: var(--space-sm) var(--space-md);
+  }
+  
+  .notification-item {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  
+  .notification-actions {
+    justify-content: flex-end;
+  }
+}
+/* ================ HEADER NOTIFICATIONS ================ */
+.notification-btn.active {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.notifications-panel-wrapper {
+  position: fixed;
+  top: 70px; /* Adjust based on your header height */
+  right: 20px;
+  z-index: 1000;
+  width: 400px;
+  max-width: 90vw;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Adjust the notifications container for the dropdown */
+.notifications-panel-wrapper .notifications-container {
+  max-height: 70vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-xl);
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .notifications-panel-wrapper {
+    top: 60px;
+    right: 10px;
+    left: 10px;
+    width: auto;
+  }
+}
