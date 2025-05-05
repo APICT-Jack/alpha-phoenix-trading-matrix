@@ -1,0 +1,184 @@
+/* ================ COMMUNITY SECTION ================ */
+.community-section {
+    padding: var(--space-xxl) 0;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(15, 17, 21, 0.9) 0%, rgba(26, 29, 36, 0.9) 100%);
+  }
+  
+  .community-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,122,0,0.03)" d="M0,0 L100,0 L100,100 L0,100 Z"></path></svg>');
+    background-size: cover;
+    z-index: -1;
+  }
+  
+  .community-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+  }
+  
+  .community-card {
+    position: relative;
+    overflow: hidden;
+    padding: var(--space-xl);
+    border-radius: var(--radius-lg);
+    background: var(--color-card);
+    border: 1px solid rgba(255, 122, 0, 0.1);
+    transition: all var(--transition-speed) var(--transition-easing);
+    z-index: 1;
+  }
+  
+  .community-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 122, 0, 0.05) 0%, transparent 100%);
+    z-index: -1;
+  }
+  
+  .community-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 122, 0, 0.1);
+    border-color: rgba(255, 122, 0, 0.3);
+  }
+  
+  .card-visual {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, rgba(255, 122, 0, 0.1) 0%, rgba(41, 121, 255, 0.1) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--color-accent);
+    margin-bottom: var(--space-lg);
+    transition: all var(--transition-speed) var(--transition-easing);
+  }
+  
+  .community-card:hover .card-visual {
+    transform: scale(1.1) rotate(5deg);
+    background: linear-gradient(135deg, rgba(255, 122, 0, 0.2) 0%, rgba(41, 121, 255, 0.2) 100%);
+  }
+  
+  .community-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-sm);
+    color: var(--color-text);
+    position: relative;
+    display: inline-block;
+  }
+  
+  .community-card h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--color-accent);
+    transition: width var(--transition-speed) var(--transition-easing);
+  }
+  
+  .community-card:hover h3::after {
+    width: 80px;
+  }
+  
+  .community-card p {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-md);
+    min-height: 60px;
+  }
+  
+  .community-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    padding: var(--space-sm) var(--space-md);
+    background: rgba(41, 121, 255, 0.1);
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all var(--transition-speed-fast) var(--transition-easing);
+    text-decoration: none;
+    width: 100%;
+    max-width: 200px;
+    margin-top: var(--space-sm);
+  }
+  
+  .community-btn i {
+    transition: transform var(--transition-speed-fast) var(--transition-easing);
+  }
+  
+  .community-btn:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
+    box-shadow: 0 4px 12px rgba(41, 121, 255, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  .community-btn:hover i {
+    transform: translateX(3px);
+  }
+  
+  /* Community badges */
+  .online-count {
+    position: absolute;
+    bottom: -8px;
+    right: -8px;
+    background: var(--color-success);
+    color: var(--color-white);
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .live-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--color-danger);
+    color: var(--color-white);
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: var(--radius-full);
+    animation: pulse 2s infinite;
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .prize-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--color-accent);
+    color: var(--color-white);
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .community-btn {
+      max-width: 100%;
+    }
+  }

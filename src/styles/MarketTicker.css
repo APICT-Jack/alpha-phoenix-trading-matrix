@@ -1,0 +1,58 @@
+/* ================ MARKET TICKER ================ */
+.market-ticker {
+    background: var(--color-bg-tertiary);
+    padding: var(--space-sm) 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+  
+  .ticker-container {
+    display: flex;
+    gap: var(--space-xl);
+    width: max-content;
+    animation: ticker 30s linear infinite;
+  }
+  
+  .ticker-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-family: var(--font-mono);
+  }
+  
+  .ticker-symbol {
+    color: var(--color-text-secondary);
+  }
+  
+  .ticker-price {
+    font-weight: 500;
+  }
+  
+  .ticker-change {
+    padding: var(--space-xxs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+  }
+  
+  .ticker-change.positive {
+    background: rgba(76, 175, 80, 0.2);
+    color: var(--color-success);
+  }
+  
+  .ticker-change.negative {
+    background: rgba(239, 83, 80, 0.2);
+    color: var(--color-danger);
+  }
+  
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .ticker-container {
+      gap: var(--space-lg);
+    }
+  }
