@@ -3,16 +3,13 @@
     padding: var(--space-xxl) 0;
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, rgba(15, 17, 21, 0.9) 0%, rgba(26, 29, 36, 0.9) 100%);
+    
   }
   
   .community-section::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,122,0,0.03)" d="M0,0 L100,0 L100,100 L0,100 Z"></path></svg>');
     background-size: cover;
     z-index: -1;
@@ -31,17 +28,18 @@
     border-radius: var(--radius-lg);
     background: var(--color-card);
     border: 1px solid rgba(255, 122, 0, 0.1);
-    transition: all var(--transition-speed) var(--transition-easing);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    will-change: transform;
   }
   
   .community-card::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: linear-gradient(135deg, rgba(255, 122, 0, 0.05) 0%, transparent 100%);
     z-index: -1;
   }
@@ -63,7 +61,10 @@
     font-size: 2rem;
     color: var(--color-accent);
     margin-bottom: var(--space-lg);
-    transition: all var(--transition-speed) var(--transition-easing);
+    transition: transform 0.3s ease, background 0.3s ease;
+    will-change: transform;
+    flex-shrink: 0;
+    backface-visibility: hidden;
   }
   
   .community-card:hover .card-visual {
@@ -76,7 +77,6 @@
     margin-bottom: var(--space-sm);
     color: var(--color-text);
     position: relative;
-    display: inline-block;
   }
   
   .community-card h3::after {
@@ -87,7 +87,7 @@
     width: 40px;
     height: 2px;
     background: var(--color-accent);
-    transition: width var(--transition-speed) var(--transition-easing);
+    transition: width 0.3s ease;
   }
   
   .community-card:hover h3::after {
@@ -99,6 +99,7 @@
     color: var(--color-text-secondary);
     margin-bottom: var(--space-md);
     min-height: 60px;
+    line-height: 1.5;
   }
   
   .community-btn {
@@ -113,15 +114,16 @@
     border-radius: var(--radius-md);
     font-weight: 500;
     font-size: 0.9rem;
-    transition: all var(--transition-speed-fast) var(--transition-easing);
+    transition: all 0.25s ease;
     text-decoration: none;
     width: 100%;
     max-width: 200px;
     margin-top: var(--space-sm);
+    will-change: transform;
   }
   
   .community-btn i {
-    transition: transform var(--transition-speed-fast) var(--transition-easing);
+    transition: transform 0.25s ease;
   }
   
   .community-btn:hover {
@@ -136,44 +138,38 @@
   }
   
   /* Community badges */
-  .online-count {
+  .online-count,
+  .live-badge,
+  .prize-badge {
     position: absolute;
-    bottom: -8px;
-    right: -8px;
-    background: var(--color-success);
-    color: var(--color-white);
     font-size: 0.7rem;
     padding: 3px 8px;
     border-radius: var(--radius-full);
+    color: var(--color-white);
+    box-shadow: var(--shadow-sm);
     display: flex;
     align-items: center;
     gap: 4px;
-    box-shadow: var(--shadow-sm);
+    z-index: 2;
+  }
+  
+  .online-count {
+    bottom: -8px;
+    right: -8px;
+    background: var(--color-success);
   }
   
   .live-badge {
-    position: absolute;
     top: -8px;
     right: -8px;
     background: var(--color-danger);
-    color: var(--color-white);
-    font-size: 0.7rem;
-    padding: 3px 8px;
-    border-radius: var(--radius-full);
     animation: pulse 2s infinite;
-    box-shadow: var(--shadow-sm);
   }
   
   .prize-badge {
-    position: absolute;
     top: -8px;
     right: -8px;
     background: var(--color-accent);
-    color: var(--color-white);
-    font-size: 0.7rem;
-    padding: 3px 8px;
-    border-radius: var(--radius-full);
-    box-shadow: var(--shadow-sm);
   }
   
   /* Responsive Styles */
@@ -182,3 +178,4 @@
       max-width: 100%;
     }
   }
+  

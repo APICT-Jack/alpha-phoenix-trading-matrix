@@ -19,6 +19,7 @@ import './styles/Tabs.css';
 import './styles/Testimonials.css';
 import './styles/ThemeToggle.css';
 import './styles/TradingCard.css';
+import './styles/FloatingAssistant.css'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
