@@ -1,3 +1,4 @@
+// src/components/Layout/Header.jsx
 import { useState, useEffect } from 'react';
 import { 
   FaHome, 
@@ -7,14 +8,20 @@ import {
   FaTools, 
   FaBell, 
   FaUser,
-  FaSearch,
-  FaTimes
+  FaTimes,
+  FaChevronDown,
+  FaSignOutAlt
 } from 'react-icons/fa';
 import { 
   FiCheck, 
   FiClock, 
   FiBellOff 
 } from 'react-icons/fi';
+import { useAuth } from '../../context/AuthContext';  // Updated path
+import AuthModal from '../auth/AuthModal';  // Updated path
+import './Header.css';  // Make sure this file exists
+
+// ... rest of your Header component code ...
 
 const NotificationsPanel = ({ onClose }) => {
   const [activeTab, setActiveTab] = useState('signals');
@@ -186,7 +193,39 @@ const NotificationsPanel = ({ onClose }) => {
 
 export default function Header() {
   const [showNotifications, setShowNotifications] = useState(false);
-  const [showSearch, setShowSearch] = useState(false);
+  const [showUserDropdown, setShowUserDropdown] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const { user, signOut } = useAuth();
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest('.user-btn') && !event.target.closest('.user-dropdown')) {
+        setShowUserDropdown(false);
+      }
+      if (!event.target.closest('.notification-btn') && !event.target.closest('.notifications-container')) {
+        setShowNotifications(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleUserAction = () => {
+    if (user) {
+      setShowUserDropdown(!showUserDropdown);
+      setShowNotifications(false);
+    } else {
+      setShowAuthModal(true);
+      setShowUserDropdown(false);
+    }
+  };
+
+  const handleLogout = () => {
+    signOut();
+    setShowUserDropdown(false);
+  };
 
   return (
     <>
@@ -218,24 +257,65 @@ export default function Header() {
             </nav>
             
             <div className="user-actions">
-          
-              
               <button 
                 className={`notification-btn ${showNotifications ? 'active' : ''}`}
                 onClick={() => {
                   setShowNotifications(!showNotifications);
-                  setShowSearch(false);
+                  setShowUserDropdown(false);
                 }}
               >
                 <FaBell />
                 <span className="notification-count">3</span>
               </button>
               
-              <button className="user-btn">
-                <div className="user-avatar">
-                  <FaUser />
-                </div>
-              </button>
+              <div className="user-container">
+                <button 
+                  className={`user-btn ${showUserDropdown ? 'active' : ''}`}
+                  onClick={handleUserAction}
+                >
+                  <div className="user-avatar">
+                    {user ? (
+                      user.name.charAt(0).toUpperCase()
+                    ) : (
+                      <FaUser />
+                    )}
+                  </div>
+                  {user && (
+                    <span className="user-name">
+                      {user.name.split(' ')[0]}
+                    </span>
+                  )}
+                  {user && <FaChevronDown className="chevron" />}
+                </button>
+
+                {user && showUserDropdown && (
+                  <div className="user-dropdown">
+                    <div className="dropdown-header">
+                      <div className="dropdown-avatar">
+                        {user.name.charAt(0).toUpperCase()}
+                      </div>
+                      <div className="dropdown-user-info">
+                        <div className="dropdown-name">{user.name}</div>
+                        <div className="dropdown-email">{user.email}</div>
+                      </div>
+                    </div>
+                    <div className="dropdown-divider"></div>
+                    <a href="/profile" className="dropdown-item">
+                      My Profile
+                    </a>
+                    <a href="/settings" className="dropdown-item">
+                      Account Settings
+                    </a>
+                    <a href="/subscription" className="dropdown-item">
+                      Subscription
+                    </a>
+                    <div className="dropdown-divider"></div>
+                    <button className="dropdown-item logout" onClick={handleLogout}>
+                      <FaSignOutAlt /> Logout
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -243,6 +323,13 @@ export default function Header() {
 
       {showNotifications && (
         <NotificationsPanel onClose={() => setShowNotifications(false)} />
+      )}
+      
+      {showAuthModal && (
+        <AuthModal 
+          onClose={() => setShowAuthModal(false)}
+          initialForm="login"
+        />
       )}
     </>
   );

@@ -1,4 +1,3 @@
-import Header from './components/layout/Header';
 import Hero from './components/sections/Hero';
 import Features from './components/sections/Features';
 import Library from './components/sections/Library';
@@ -12,33 +11,31 @@ import Footer from './components/layout/Footer';
 import PremiumBanner from './components/layout/PremiumBanner';
 import { ThemeProvider } from './context/ThemeContext';
 import TradingCard from './components/ui/TradingCard';
+import { AuthProvider } from './context/AuthContext';
+import Header from './components/layout/Header';
+
 function App() {
   return (
     <div className="app">
-      
-      <PremiumBanner />
-      <ThemeProvider>
-      <Header />
-      <main className="main-content">
-        <Hero />
-        <Features />
-        <Library />
-        <Education />  
-        <Community />
-        <MarketTicker />
-        <div className="floating-buttons">
-       
-       <ThemeToggle />
-       
-        
-        <FloatingAssistant />
-      </div>
-     
-     
-      
-      </main>
-      <Footer />
-      </ThemeProvider>
+      <AuthProvider> {/* Wrap everything that needs auth context */}
+        <PremiumBanner />
+        <ThemeProvider>
+          <Header /> {/* Header is now within AuthProvider */}
+          <main className="main-content">
+            <Hero />
+            <Features />
+            <Library />
+            <Education />
+            <Community />
+            <MarketTicker />
+            <div className="floating-buttons">
+              <ThemeToggle />
+              <FloatingAssistant />
+            </div>
+          </main>
+          <Footer />
+        </ThemeProvider>
+      </AuthProvider>
     </div>
   );
 }
