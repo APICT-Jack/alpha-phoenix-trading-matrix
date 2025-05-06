@@ -9,7 +9,7 @@ import './styles/Community.css';
 import './styles/Education.css';
 import './styles/Features.css';
 import './styles/Footer.css';
-import './styles/Header.css';
+
 import './styles/Hero.css';
 import './styles/Library.css';
 import './styles/Logo.css';
