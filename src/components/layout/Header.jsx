@@ -241,7 +241,7 @@ export default function Header() {
                 </div>
               </div>
               <div className="logo-text">
-                <h1>Alpha Phoenix</h1>
+                <p>TM</p>
                 <p>Trading Matrix</p>
               </div>
             </a>
